@@ -11,6 +11,8 @@ import {
   BarChart3,
   ChevronRight,
   QrCode,
+  ImagePlus,
+  Trash2,
 } from 'lucide-react';
 import {
   INITIAL_VOICE_NOTES,
@@ -22,6 +24,7 @@ import {
 } from '../data/vyabData';
 import { FourColorMark, VyabConcentricRings, VyabCoralCircles, VyabKicker } from './VyabBrandMark';
 import { BoothQrGenerator } from './BoothQrGenerator';
+import { BoothPassCanvas, downloadBoothPass, useAvatarImage, type PassData } from './BoothPassCard';
 
 interface BoothInteractiveSectionProps {
   lang: Lang;
@@ -52,7 +55,7 @@ const PERSONA_INFO: Record<
       'Bạn tin vào sức mạnh của đối thoại minh bạch và luôn sẵn sàng đưa góc nhìn thế hệ trẻ vào các quyết sách khí hậu, số hóa EU–Việt Nam.',
     descEn:
       'You champion structured dialogue and love bringing grounded youth perspectives directly to EU–Viet Nam climate and digital policy tables.',
-    accentHex: '#F04533',
+    accentHex: '#EF3E38',
   },
   empower: {
     code: 'EMPOWER',
@@ -62,7 +65,7 @@ const PERSONA_INFO: Record<
       'Bạn hành động thực tiễn qua khởi nghiệp bền vững, kỹ năng ESG và tạo ra cơ hội việc làm xanh cho cộng đồng trẻ.',
     descEn:
       'You turn ideas into impact through ESG mastery, sustainable entrepreneurship, and practical green career pathways.',
-    accentHex: '#1C69C7',
+    accentHex: '#2573BE',
   },
   connect: {
     code: 'CONNECT',
@@ -72,7 +75,7 @@ const PERSONA_INFO: Record<
       'Bạn là nhịp cầu đưa cơ hội giáo dục Châu Âu, Erasmus+ và mạng lưới thanh niên ASEAN tới gần hơn với người trẻ khắp ba miền.',
     descEn:
       'You bridge geographic divides, linking regional students across Viet Nam with Erasmus+ mentors and ASEAN–EU youth networks.',
-    accentHex: '#15B567',
+    accentHex: '#23CC83',
   },
 };
 
@@ -105,6 +108,7 @@ export function BoothInteractiveSection({ lang }: BoothInteractiveSectionProps) 
   const [quizFinished, setQuizFinished] = useState(false);
   const [passSerial, setPassSerial] = useState('VYAB-26-108');
   const [downloadToast, setDownloadToast] = useState(false);
+  const avatar = useAvatarImage();
 
   // --- TAB 2: LIVE YOUTH VOICE WALL STATE ---
   const [voices, setVoices] = useState<VoiceNote[]>(() => {
@@ -212,111 +216,77 @@ export function BoothInteractiveSection({ lang }: BoothInteractiveSectionProps) 
     setDownloadToast(false);
   };
 
-  const handleDownloadPass = () => {
-    const persona = PERSONA_INFO[matchedPillar];
-    const displayName = visitorName.trim() || (lang === 'vi' ? 'Khách Tham Quan Booth' : 'VYAB Booth Guest');
+  const passData: PassData = useMemo(() => {
+    const persona = quizFinished ? PERSONA_INFO[matchedPillar] : null;
+    return {
+      lang,
+      name: visitorName,
+      avatar: avatar.img,
+      persona: persona
+        ? {
+            key: matchedPillar,
+            code: persona.code,
+            title: lang === 'vi' ? persona.titleVi : persona.titleEn,
+            desc: lang === 'vi' ? persona.descVi : persona.descEn,
+          }
+        : null,
+      score: quizFinished ? `${correctCount}/${QUIZ_QUESTIONS.length}` : `–/${QUIZ_QUESTIONS.length}`,
+      serial: quizFinished ? passSerial : 'VYAB-26-XXX',
+    };
+  }, [lang, visitorName, avatar.img, quizFinished, matchedPillar, correctCount, passSerial]);
 
-    const canvas = document.createElement('canvas');
-    canvas.width = 1080;
-    canvas.height = 640;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // Official VYAB Midnight Navy Card Canvas
-    ctx.fillStyle = '#00104E';
-    ctx.fillRect(0, 0, 1080, 640);
-
-    // Official VYAB Concentric Cobalt Rings Motif
-    ctx.strokeStyle = '#123985';
-    ctx.lineWidth = 30;
-    ctx.beginPath();
-    ctx.arc(980, 120, 215, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(980, 120, 138, 0, Math.PI * 2);
-    ctx.stroke();
-
-    // Official VYAB Twin Coral Circles Bottom-Right
-    ctx.fillStyle = '#F04533';
-    ctx.beginPath();
-    ctx.arc(990, 620, 74, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(888, 632, 32, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Inner hairline frame
-    ctx.strokeStyle = 'rgba(255,255,255,0.22)';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(28, 28, 1024, 584);
-
-    // Official 4-color VYAB signature squares top-left
-    const colors = ['#F04533', '#1C69C7', '#FFD014', '#1CD07A'];
-    colors.forEach((c, idx) => {
-      ctx.fillStyle = c;
-      ctx.fillRect(68 + idx * 26, 68, 16, 16);
-    });
-
-    // Kicker
-    ctx.fillStyle = '#FFD014';
-    ctx.font = '700 19px "Source Sans 3", sans-serif';
-    ctx.fillText('VIETNAM YOUTH ADVISORY BOARD · 1ST COHORT FINALE BOOTH PASS', 68, 126);
-
-    // Accent bar
-    ctx.fillStyle = persona.accentHex;
-    ctx.fillRect(68, 158, 110, 6);
-
-    // Visitor Name
-    ctx.fillStyle = '#FFFFFF';
-    ctx.font = '800 58px "Barlow Condensed", "Source Sans 3", sans-serif';
-    ctx.fillText(displayName, 68, 244);
-
-    // Persona Title
-    ctx.fillStyle = '#FFD014';
-    ctx.font = '700 30px "Barlow Condensed", "Source Sans 3", sans-serif';
-    ctx.fillText(
-      `${persona.code} — ${lang === 'vi' ? persona.titleVi : persona.titleEn}`,
-      68,
-      304
-    );
-
-    // Score & Description
-    ctx.fillStyle = 'rgba(255,255,255,0.85)';
-    ctx.font = '400 22px "Source Sans 3", sans-serif';
-    const scoreLine =
-      lang === 'vi'
-        ? `Hoàn thành Thử thách VYAB: ${correctCount}/${QUIZ_QUESTIONS.length} điểm`
-        : `Completed VYAB Booth Challenge: ${correctCount}/${QUIZ_QUESTIONS.length} score`;
-    ctx.fillText(scoreLine, 68, 368);
-
-    // Divider
-    ctx.strokeStyle = 'rgba(255,255,255,0.18)';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(68, 468);
-    ctx.lineTo(1012, 468);
-    ctx.stroke();
-
-    // Footer metadata
-    ctx.fillStyle = 'rgba(255,255,255,0.7)';
-    ctx.font = '500 19px "Source Sans 3", sans-serif';
-    ctx.fillText('Sky Garden, EU Delegation to Viet Nam · 27 November 2026', 68, 520);
-    ctx.fillText('Engage · Empower · Connect  |  EU Youth Action Plan 2022–2027', 68, 554);
-
-    // Serial right
-    ctx.fillStyle = '#FFFFFF';
-    ctx.font = '600 22px monospace';
-    ctx.textAlign = 'right';
-    ctx.fillText(passSerial, 1012, 536);
-
-    const link = document.createElement('a');
-    link.download = `VYAB-Booth-Pass-${passSerial}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-
+  const handleDownloadPass = async () => {
+    await downloadBoothPass(passData, `VYAB-Booth-Pass-${passSerial}.png`);
     setDownloadToast(true);
     setTimeout(() => setDownloadToast(false), 3000);
   };
+
+  const avatarPicker = (
+    <div className="flex flex-wrap items-center gap-3">
+      <label className="group inline-flex items-center gap-3 pl-1.5 pr-4 py-1.5 rounded-full border border-dashed border-[#010C44]/30 bg-[#F4F7FC] hover:border-[#010C44] cursor-pointer transition-colors focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-[#2573BE]">
+        <span className="w-10 h-10 rounded-full overflow-hidden bg-[#010C44] text-[#FFCD0E] flex items-center justify-center shrink-0 ring-2 ring-[#FFCD0E]">
+          {avatar.url ? (
+            <img src={avatar.url} alt="" className="w-full h-full object-cover" />
+          ) : (
+            <ImagePlus className="w-4 h-4" />
+          )}
+        </span>
+        <span className="text-sm font-semibold text-[#010C44]">
+          {avatar.url
+            ? lang === 'vi'
+              ? 'Đổi ảnh đại diện'
+              : 'Change photo'
+            : lang === 'vi'
+              ? 'Thêm ảnh đại diện (tùy chọn)'
+              : 'Add a profile photo (optional)'}
+        </span>
+        <input
+          type="file"
+          accept="image/*"
+          className="sr-only"
+          onChange={(e) => {
+            avatar.pick(e.target.files?.[0]);
+            e.target.value = '';
+          }}
+        />
+      </label>
+      {avatar.url && (
+        <button
+          type="button"
+          onClick={avatar.clear}
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#5B6885] hover:text-[#EF3E38] cursor-pointer"
+        >
+          <Trash2 className="w-3.5 h-3.5" />
+          {lang === 'vi' ? 'Gỡ ảnh' : 'Remove'}
+        </button>
+      )}
+      <p className="basis-full text-[11px] text-[#6B7894]">
+        {lang === 'vi'
+          ? 'Ảnh chỉ được xử lý ngay trên máy của bạn, không tải lên bất kỳ đâu.'
+          : 'Your photo stays on your device — it is never uploaded.'}
+      </p>
+    </div>
+  );
 
   // Voice Wall handlers
   const handleAddVoice = (e: React.FormEvent) => {
@@ -528,33 +498,16 @@ export function BoothInteractiveSection({ lang }: BoothInteractiveSectionProps) 
                           <ChevronRight className="w-4 h-4 text-[#FFD014]" />
                         </button>
                       </form>
+                      <div className="mt-5 max-w-lg">{avatarPicker}</div>
                     </div>
 
-                    {/* Preview Pass Silhouette */}
-                    <div className="lg:col-span-5">
-                      <div className="bg-[#00104E] text-white p-7 rounded-2xl border border-[#00104E] relative overflow-hidden shadow-xl">
-                        <VyabConcentricRings className="absolute -right-24 -top-24 w-[220px] h-[220px] opacity-75" />
-                        <div className="relative z-10">
-                          <div className="flex items-center justify-between mb-6">
-                            <FourColorMark />
-                            <span className="font-mono text-xs text-white/70">VYAB-26-XXX</span>
-                          </div>
-                          <p className="text-[11px] font-bold tracking-[0.14em] text-[#FFD014] mb-1">
-                            {lang === 'vi' ? 'MẪU THẺ CHECK-IN BOOTH' : 'BOOTH PASS PREVIEW'}
-                          </p>
-                          <p className="font-display text-2xl font-extrabold text-white mb-2">
-                            {visitorName.trim() ||
-                              (lang === 'vi' ? 'Tên của bạn tại đây' : 'Your Name Here')}
-                          </p>
-                          <p className="text-xs text-[#FFD014] font-semibold mb-6">
-                            Engage · Empower · Connect
-                          </p>
-                          <div className="border-t border-white/15 pt-4 flex items-center justify-between text-[11px] text-white/75">
-                            <span>Sky Garden, EUD Hà Nội</span>
-                            <span className="tabular-nums">27.11.2026</span>
-                          </div>
-                        </div>
-                      </div>
+                    {/* Live badge preview */}
+                    <div className="lg:col-span-5 flex justify-center">
+                      <BoothPassCanvas
+                        data={passData}
+                        label={lang === 'vi' ? 'Xem trước Thẻ Booth VYAB' : 'VYAB Booth Pass preview'}
+                        className="w-full max-w-[340px] h-auto rounded-2xl shadow-2xl ring-1 ring-[#010C44]/10"
+                      />
                     </div>
                   </div>
                 )}
@@ -684,58 +637,28 @@ export function BoothInteractiveSection({ lang }: BoothInteractiveSectionProps) 
 
                 {quizFinished && (
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                    {/* Generated VYAB Branded Booth Pass */}
-                    <div className="lg:col-span-7">
-                      <div className="bg-[#00104E] text-white p-7 sm:p-9 rounded-2xl relative overflow-hidden shadow-xl">
-                        <VyabConcentricRings className="absolute -right-24 -top-24 w-[240px] h-[240px] opacity-80" />
-                        <VyabCoralCircles className="absolute -bottom-6 -right-8 w-[170px] opacity-90" />
-                        <div
-                          className="absolute inset-3 rounded-xl border border-white/20 pointer-events-none"
-                          aria-hidden="true"
+                    {/* Generated VYAB Booth Pass badge */}
+                    <div className="lg:col-span-6 flex justify-center">
+                      <motion.div
+                        initial={{ opacity: 0, rotate: -3, y: 16 }}
+                        animate={{ opacity: 1, rotate: 0, y: 0 }}
+                        transition={{ duration: 0.5, ease: EASE_EDITORIAL }}
+                        className="w-full max-w-[400px]"
+                      >
+                        <BoothPassCanvas
+                          data={passData}
+                          label={
+                            lang === 'vi'
+                              ? `Thẻ Booth VYAB của ${visitorName.trim() || 'bạn'}`
+                              : `VYAB Booth Pass for ${visitorName.trim() || 'you'}`
+                          }
+                          className="w-full h-auto rounded-2xl shadow-2xl"
                         />
-                        <div className="relative z-10">
-                          <div className="flex items-center justify-between gap-4 mb-6">
-                            <FourColorMark />
-                            <span className="font-mono text-xs text-white/80 tabular-nums">
-                              {passSerial}
-                            </span>
-                          </div>
-
-                          <p className="text-[11px] font-bold tracking-[0.16em] text-[#FFD014] mb-2">
-                            {lang === 'vi'
-                              ? 'THẺ CHECK-IN BOOTH · VYAB KHÓA 1'
-                              : 'VYAB 1ST COHORT FINALE · BOOTH PASS'}
-                          </p>
-                          <h3 className="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
-                            {visitorName.trim() ||
-                              (lang === 'vi' ? 'Khách Tham Quan Booth' : 'VYAB Booth Guest')}
-                          </h3>
-                          <p className="text-sm font-bold mb-4 text-[#FFD014]">
-                            {PERSONA_INFO[matchedPillar].code} ·{' '}
-                            {lang === 'vi'
-                              ? PERSONA_INFO[matchedPillar].titleVi
-                              : PERSONA_INFO[matchedPillar].titleEn}
-                          </p>
-                          <p className="text-sm text-white/85 leading-relaxed max-w-lg mb-7">
-                            {lang === 'vi'
-                              ? PERSONA_INFO[matchedPillar].descVi
-                              : PERSONA_INFO[matchedPillar].descEn}
-                          </p>
-
-                          <div className="border-t border-white/15 pt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-white/75 tabular-nums">
-                            <span>
-                              {lang === 'vi'
-                                ? `Kết quả thử thách: ${correctCount}/${QUIZ_QUESTIONS.length}`
-                                : `Challenge Score: ${correctCount}/${QUIZ_QUESTIONS.length}`}
-                            </span>
-                            <span>Sky Garden, EUD Hà Nội · 27.11.2026</span>
-                          </div>
-                        </div>
-                      </div>
+                      </motion.div>
                     </div>
 
                     {/* Download & Share Actions */}
-                    <div className="lg:col-span-5">
+                    <div className="lg:col-span-6">
                       <p className="text-xs font-bold text-[#15B567] mb-2">
                         {lang === 'vi' ? 'Hoàn thành xuất sắc!' : 'Challenge completed!'}
                       </p>
@@ -749,6 +672,8 @@ export function BoothInteractiveSection({ lang }: BoothInteractiveSectionProps) 
                           ? 'Tải ảnh thẻ PNG chất lượng cao để lưu niệm, check-in tại booth VYAB hoặc chia sẻ hành trình cùng bạn bè.'
                           : 'Download your high-resolution PNG card to keep as a booth souvenir or share your matched pillar on LinkedIn and Instagram.'}
                       </p>
+
+                      <div className="mb-6">{avatarPicker}</div>
 
                       <div className="flex flex-wrap items-center gap-3">
                         <button
