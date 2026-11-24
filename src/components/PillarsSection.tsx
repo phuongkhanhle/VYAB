@@ -32,7 +32,7 @@ export function PillarsSection({ lang }: PillarsSectionProps) {
   return (
     <section
       id="pillars"
-      className="relative bg-[#F4F7FC] border-y border-[#00104E]/10 overflow-hidden"
+      className="vy-edge-left relative bg-white overflow-hidden"
     >
       <VyabCoralCircles className="hidden lg:block absolute right-8 bottom-0 w-48 opacity-85" />
 
@@ -49,7 +49,7 @@ export function PillarsSection({ lang }: PillarsSectionProps) {
               variant="light"
               className="mb-4"
             />
-            <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[#00104E] tracking-tight leading-[1.08]">
+            <h2 className="vy-title font-display text-4xl md:text-5xl font-extrabold text-[#00104E] tracking-tight leading-[1.08]">
               {lang === 'vi'
                 ? '3 trụ cột hành động & khuyến nghị'
                 : '3 pillars of the EU Youth Action Plan'}

@@ -37,7 +37,7 @@ export function ActivitiesSection({ lang }: ActivitiesSectionProps) {
   );
 
   return (
-    <section id="activities" className="bg-white">
+    <section id="activities" className="vy-edge-right bg-white">
       {/* PART A: 3-City Green Career Showcase */}
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-20 md:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-14">
@@ -57,7 +57,7 @@ export function ActivitiesSection({ lang }: ActivitiesSectionProps) {
               variant="light"
               className="mb-4"
             />
-            <h2 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-[#00104E] leading-[1.08]">
+            <h2 className="vy-title font-display text-4xl md:text-5xl font-extrabold tracking-tight text-[#00104E] leading-[1.08]">
               {lang === 'vi'
                 ? 'Dấu ấn ba miền trên hành trình xanh'
                 : 'Three regions united on greener pathways'}
@@ -172,7 +172,7 @@ export function ActivitiesSection({ lang }: ActivitiesSectionProps) {
                   className="mb-4"
                 />
 
-                <h2 className="font-display text-3xl font-extrabold text-white leading-[1.12] mb-5">
+                <h2 className="vy-title font-display text-3xl font-extrabold text-white leading-[1.12] mb-5">
                   {lang === 'vi'
                     ? 'Từ Việt Nam tới đối thoại Brussels'
                     : "VYAB's Contribution to EU Policy Dialogue"}

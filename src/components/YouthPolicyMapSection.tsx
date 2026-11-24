@@ -801,7 +801,7 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
   );
 
   return (
-    <section id="policy-map" className="bg-[#F4F7FC] border-b border-[#00104E]/10">
+    <section id="policy-map" className="vy-edge-right bg-white">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-20 md:py-28">
         {/* Section Official VYAB Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-10">
@@ -815,7 +815,7 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
               variant="navy-bar"
               className="mb-4"
             />
-            <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[#00104E] tracking-tight leading-[1.08]">
+            <h2 className="vy-title font-display text-4xl md:text-5xl font-extrabold text-[#00104E] tracking-tight leading-[1.08]">
               {lang === 'vi'
                 ? 'Người trẻ nghĩ gì về chính sách thời đại mới?'
                 : 'Mapping what young people truly care about'}

@@ -27,7 +27,7 @@ export function PeopleAndFinaleSection({ lang }: PeopleAndFinaleSectionProps) {
   });
 
   return (
-    <section id="people" className="bg-white">
+    <section id="people" className="vy-edge-left bg-white">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-20 md:py-28">
         {/* Section Heading & Filter */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#00104E]/12 mb-12">
@@ -41,7 +41,7 @@ export function PeopleAndFinaleSection({ lang }: PeopleAndFinaleSectionProps) {
               variant="light"
               className="mb-3"
             />
-            <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[#00104E] tracking-tight leading-[1.08]">
+            <h2 className="vy-title font-display text-4xl md:text-5xl font-extrabold text-[#00104E] tracking-tight leading-[1.08]">
               {lang === 'vi' ? 'Gương mặt VYAB Khóa 1' : 'Leadership, Advisors & Members'}
             </h2>
           </div>
