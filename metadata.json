@@ -1,0 +1,6 @@
+{
+  "name": "VYAB — Vietnam Youth Advisory Board",
+  "description": "Trang web giới thiệu Hội đồng Cố vấn Thanh niên Việt Nam (VYAB), hành trình hoạt động nổi bật 2024–2026 và khu vực tương tác dành cho khách tham quan booth.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

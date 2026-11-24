@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Outfit", "Plus Jakarta Sans", -apple-system, sans-serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Official VYAB & EU Global Gateway Brand Tokens */
+  --color-vyab-navy: #00104e;
+  --color-vyab-navy-deep: #000b38;
+  --color-vyab-cobalt: #123985;
+  --color-vyab-coral: #f04533;
+  --color-vyab-blue: #1c69c7;
+  --color-vyab-yellow: #ffd014;
+  --color-vyab-emerald: #15b567;
+  --color-vyab-mint: #1cd07a;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    color: #00104e;
+    background-color: #ffffff;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Official VYAB Swallowtail Ribbon Clip */
+.vyab-ribbon {
+  clip-path: polygon(0 0, 100% 0, 96.5% 50%, 100% 100%, 0 100%, 3.5% 50%);
+}
+
+/* Official VYAB Page-40 Geometric Hexagon Clip */
+.vyab-hex {
+  clip-path: polygon(50% 0%, 96% 25%, 96% 75%, 50% 100%, 4% 75%, 4% 25%);
+}
+
+/* Crisp VYAB Photo Frame with subtle hover polish */
+.editorial-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
