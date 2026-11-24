@@ -100,8 +100,10 @@ const QR_COLORS = [
 
 export function BoothQrGenerator({ lang }: BoothQrGeneratorProps) {
   const origin = useMemo(() => {
+    // Site root including any sub-path (e.g. https://user.github.io/VYAB), without trailing slash
     if (typeof window !== 'undefined' && window.location?.origin) {
-      return window.location.origin;
+      const dir = window.location.pathname.replace(/[^/]*$/, '').replace(/\/$/, '');
+      return `${window.location.origin}${dir}`;
     }
     return 'https://vyab.vietnam.eu';
   }, []);

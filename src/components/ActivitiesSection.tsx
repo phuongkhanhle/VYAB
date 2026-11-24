@@ -232,7 +232,7 @@ export function ActivitiesSection({ lang }: ActivitiesSectionProps) {
 
                 <div className="rounded-xl overflow-hidden border border-white/20 mb-4">
                   <FramedPhoto
-                    src="/assets/vyab/event_05_544x640.png"
+                    src="assets/vyab/event_05_544x640.png"
                     alt="INTPA Global Youth Sounding Board"
                     framed={false}
                     className="aspect-[5/4] w-full"

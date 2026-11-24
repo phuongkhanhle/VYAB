@@ -35,7 +35,7 @@ const EASE_BRAND: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const ABOUT_GALLERY_PHOTOS: (AboutGalleryPhoto & { borderHex: string })[] = [
   {
-    src: '/assets/vyab/event_07_820x546.png',
+    src: 'assets/vyab/event_07_820x546.png',
     altVi: 'Tuần lễ Ngoại giao Xanh EU tại Việt Nam 2024',
     altEn: 'EU Green Diplomacy Weeks 2024 in Viet Nam',
     locationVi: 'Hà Nội',
@@ -49,7 +49,7 @@ const ABOUT_GALLERY_PHOTOS: (AboutGalleryPhoto & { borderHex: string })[] = [
     borderHex: '#1CD07A',
   },
   {
-    src: '/assets/vyab/event_12_1024x682.png',
+    src: 'assets/vyab/event_12_1024x682.png',
     altVi: 'Ngày Châu Âu 2025 — 35 năm quan hệ ngoại giao EU–Việt Nam',
     altEn: 'Europe Day 2025 — 35th Anniversary of EU–Viet Nam Relations',
     locationVi: 'Hà Nội',
@@ -63,7 +63,7 @@ const ABOUT_GALLERY_PHOTOS: (AboutGalleryPhoto & { borderHex: string })[] = [
     borderHex: '#FFD014',
   },
   {
-    src: '/assets/vyab/event_13_1229x922.png',
+    src: 'assets/vyab/event_13_1229x922.png',
     altVi: 'Tập thể thành viên VYAB Khóa 1 trong tà áo dài Việt Nam',
     altEn: 'VYAB Cohort 1 members celebrating Vietnamese heritage',
     locationVi: 'Việt Nam',
@@ -237,7 +237,7 @@ export default function App() {
             aria-hidden="true"
           >
             <img
-              src="/assets/vyab/event_12_1024x682.png"
+              src="assets/vyab/event_12_1024x682.png"
               alt=""
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover object-[center_35%]"
@@ -433,7 +433,7 @@ export default function App() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, ease: EASE_BRAND }}
-                  src="/assets/vyab/event_11_1024x683.png"
+                  src="assets/vyab/event_11_1024x683.png"
                   alt={t(
                     'VYAB Khóa 1 cùng Đại sứ Liên minh Châu Âu tại Ngày Châu Âu 2025',
                     'VYAB Cohort 1 with the EU Ambassador at Europe Day 2025',
@@ -446,7 +446,7 @@ export default function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: 0.12, ease: EASE_BRAND }}
-                  src="/assets/vyab/photo_03_767x332.jpg"
+                  src="assets/vyab/photo_03_767x332.jpg"
                   alt={t(
                     'Tọa đàm Hành trình Xanh cùng sinh viên',
                     'Green Pathways dialogue with students',
@@ -496,13 +496,13 @@ export default function App() {
               {/* Photo collage with a royal text box overlapping, like the region slides */}
               <div className="lg:col-span-6 relative order-2 lg:order-1 min-h-[400px] sm:min-h-[460px]">
                 <img
-                  src="/assets/vyab/event_13_1229x922.png"
+                  src="assets/vyab/event_13_1229x922.png"
                   alt={t('Tập thể VYAB Khóa 1', 'VYAB Cohort 1 Community')}
                   referrerPolicy="no-referrer"
                   className="absolute left-0 top-0 w-[78%] h-[72%] object-cover"
                 />
                 <img
-                  src="/assets/vyab/event_07_820x546.png"
+                  src="assets/vyab/event_07_820x546.png"
                   alt={t('Tuần lễ Ngoại giao Xanh EU 2024', 'EU Green Diplomacy Weeks 2024')}
                   referrerPolicy="no-referrer"
                   className="absolute right-0 bottom-0 w-[52%] aspect-[4/3] object-cover border-[6px] border-white shadow-xl"

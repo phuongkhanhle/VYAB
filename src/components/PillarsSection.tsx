@@ -247,7 +247,7 @@ export function PillarsSection({ lang }: PillarsSectionProps) {
           <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="rounded-2xl overflow-hidden border-[3px] border-[#1CD07A] shadow-md bg-white">
               <FramedPhoto
-                src="/assets/vyab/event_08_800x600.png"
+                src="assets/vyab/event_08_800x600.png"
                 alt="Empowering Youth for a Sustainable Mekong Delta"
                 framed={false}
                 className="aspect-[4/3] sm:aspect-auto sm:h-full"
@@ -255,7 +255,7 @@ export function PillarsSection({ lang }: PillarsSectionProps) {
             </div>
             <div className="rounded-2xl overflow-hidden border-[3px] border-[#FFD014] shadow-md bg-white">
               <FramedPhoto
-                src="/assets/vyab/event_07_820x546.png"
+                src="assets/vyab/event_07_820x546.png"
                 alt="EU Green Diplomacy Weeks 2024 in Vietnam"
                 framed={false}
                 className="aspect-[4/3] sm:aspect-auto sm:h-full"
