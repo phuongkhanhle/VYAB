@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  /* "Travel brochure" redesign: tall condensed display type + Vietnamese-friendly body */
-  --font-display: "Big Shoulders Display", "Be Vietnam Pro", -apple-system, sans-serif;
-  --font-sans: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-serif: "Big Shoulders Display", "Be Vietnam Pro", sans-serif;
+  /* VYAB template type: Gotham Condensed → Barlow Condensed, Source Sans Pro → Source Sans 3 */
+  --font-display: "Barlow Condensed", "Source Sans 3", -apple-system, sans-serif;
+  --font-sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: "Barlow Condensed", "Source Sans 3", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* Official VYAB & EU Global Gateway Brand Tokens */
@@ -17,10 +17,10 @@
   --color-vyab-emerald: #15b567;
   --color-vyab-mint: #1cd07a;
 
-  /* Brochure accents */
-  --color-vy-royal: #2442d6;
-  --color-vy-royal-deep: #1a30a8;
-  --color-vy-crimson: #9e1b1b;
+  /* VYAB post-template tokens */
+  --color-vy-royal: #010c44; /* VYAB navy (titles, primary) */
+  --color-vy-royal-deep: #072a6a; /* VYAB ring blue */
+  --color-vy-crimson: #ef3e38; /* VYAB coral */
   --color-vy-paper: #f2f4f9;
   --color-vy-grid: #dde2ee;
 }
@@ -94,7 +94,7 @@ main > section.vy-edge-right::before {
   top: 14%;
   bottom: 14%;
   width: 12px;
-  background: var(--color-vy-royal);
+  background: var(--color-vy-crimson);
   z-index: 1;
   pointer-events: none;
 }
@@ -114,8 +114,8 @@ main > section.vy-edge-right::before {
   color: var(--color-vy-royal);
   font-weight: 800;
   font-size: clamp(2.5rem, 5.6vw, 4.25rem);
-  line-height: 1.02;
-  padding-top: 0.12em;
+  line-height: 1;
+  padding-top: 0.1em;
   letter-spacing: 0.005em;
 }
 .vy-title.text-white {

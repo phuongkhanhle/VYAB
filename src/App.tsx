@@ -17,6 +17,8 @@ import {
   EuGlobalGatewayMark,
   FourColorMark,
   FramedPhoto,
+  VyabConcentricRings,
+  VyabCoralCircles,
   VyabWordmark,
 } from './components/VyabBrandMark';
 import { PillarsSection } from './components/PillarsSection';
@@ -126,7 +128,7 @@ export default function App() {
     <div
       role="group"
       aria-label="Language switcher"
-      className="inline-flex items-center p-0.5 bg-[#F2F4F9] border border-[#2442D6]/20 rounded-full"
+      className="inline-flex items-center p-0.5 bg-[#F2F4F9] border border-[#010C44]/20 rounded-full"
     >
       {(['vi', 'en'] as const).map((code) => (
         <button
@@ -135,7 +137,7 @@ export default function App() {
           onClick={() => setLang(code)}
           aria-pressed={lang === code}
           className={`px-2.5 py-1 text-[11px] font-bold rounded-full transition-colors cursor-pointer ${
-            lang === code ? 'bg-[#2442D6] text-white' : 'text-[#2442D6]/70 hover:text-[#2442D6]'
+            lang === code ? 'bg-[#010C44] text-white' : 'text-[#010C44]/70 hover:text-[#010C44]'
           }`}
         >
           {code.toUpperCase()}
@@ -147,25 +149,25 @@ export default function App() {
   return (
     <div className="min-h-screen text-[#00104E] flex flex-col">
       {/* ==================== TOP NAVIGATION ==================== */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#2442D6]/10">
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#010C44]/10">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6 md:px-10 h-16 flex items-center justify-between gap-6">
           <a
             href="#top"
             aria-label="VYAB — Vietnam Youth Advisory Board"
-            className="inline-flex items-center whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2442D6]"
+            className="inline-flex items-center whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#010C44]"
           >
             <VyabWordmark compact />
           </a>
 
           <nav
             aria-label="Primary Navigation"
-            className="hidden lg:flex items-center gap-7 font-display text-[17px] font-extrabold uppercase tracking-[0.04em] text-[#2442D6]/75"
+            className="hidden lg:flex items-center gap-7 font-display text-[17px] font-extrabold uppercase tracking-[0.04em] text-[#010C44]/75"
           >
             {navLinks.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="relative py-1 hover:text-[#2442D6] transition-colors whitespace-nowrap after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[3px] after:w-0 hover:after:w-full after:bg-[#2442D6] after:transition-all"
+                className="relative py-1 hover:text-[#010C44] transition-colors whitespace-nowrap after:content-[''] after:absolute after:left-0 after:-bottom-0.5 after:h-[3px] after:w-0 hover:after:w-full after:bg-[#010C44] after:transition-all"
               >
                 {t(item.vi, item.en)}
               </a>
@@ -176,7 +178,7 @@ export default function App() {
             <span className="hidden sm:inline-flex">{langSwitch}</span>
             <a
               href="#booth"
-              className="px-4 py-2 font-display text-sm sm:text-base font-extrabold uppercase tracking-[0.04em] bg-[#2442D6] text-white rounded-full hover:bg-[#1A30A8] transition-colors whitespace-nowrap"
+              className="px-4 py-2 font-display text-sm sm:text-base font-extrabold uppercase tracking-[0.04em] bg-[#010C44] text-white rounded-full hover:bg-[#072A6A] transition-colors whitespace-nowrap"
             >
               {t('Tương tác Booth', 'Visit Booth')}
             </a>
@@ -185,7 +187,7 @@ export default function App() {
               onClick={() => setMobileMenuOpen((v) => !v)}
               aria-label={mobileMenuOpen ? 'Đóng menu' : 'Mở menu'}
               aria-expanded={mobileMenuOpen}
-              className="lg:hidden w-10 h-10 rounded-full flex items-center justify-center text-[#2442D6] border border-[#2442D6]/20 cursor-pointer"
+              className="lg:hidden w-10 h-10 rounded-full flex items-center justify-center text-[#010C44] border border-[#010C44]/20 cursor-pointer"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -193,13 +195,13 @@ export default function App() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-[#2442D6]/10 bg-white px-6 py-4 space-y-1">
+          <div className="lg:hidden border-t border-[#010C44]/10 bg-white px-6 py-4 space-y-1">
             {navLinks.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-2 font-display text-lg font-extrabold uppercase tracking-[0.04em] text-[#2442D6] border-b border-[#2442D6]/10 last:border-b-0"
+                className="block py-2 font-display text-lg font-extrabold uppercase tracking-[0.04em] text-[#010C44] border-b border-[#010C44]/10 last:border-b-0"
               >
                 {t(item.vi, item.en)}
               </a>
@@ -209,7 +211,7 @@ export default function App() {
         )}
 
         <motion.div
-          className="h-[3px] origin-left bg-[#2442D6]"
+          className="h-[3px] origin-left bg-[#010C44]"
           style={{ scaleX: smoothProgress }}
           aria-hidden="true"
         />
@@ -218,7 +220,7 @@ export default function App() {
       <main id="top" className="flex-1">
         {/* Crimson title tag, like the board's label */}
         <div className="flex justify-center px-4 pt-8 sm:pt-10">
-          <p className="inline-block bg-[#9E1B1B] text-white font-display text-lg sm:text-2xl font-extrabold uppercase tracking-[0.06em] px-6 sm:px-10 py-2.5 shadow-md text-center">
+          <p className="inline-block bg-[#EF3E38] text-white font-display text-lg sm:text-2xl font-extrabold uppercase tracking-[0.06em] px-6 sm:px-10 py-2.5 shadow-md text-center">
             {t('Hội đồng Cố vấn Thanh niên Việt Nam', 'Viet Nam Youth Advisory Board')}
           </p>
         </div>
@@ -226,7 +228,7 @@ export default function App() {
         {/* ==================== HERO: GIANT WORDMARK OVER PHOTO ==================== */}
         <section
           ref={heroRef}
-          className="vy-hero text-white bg-[#2442D6] !mt-6 sm:!mt-8"
+          className="vy-hero text-white bg-[#010C44] !mt-6 sm:!mt-8"
           aria-labelledby="hero-title"
         >
           <motion.div
@@ -242,9 +244,14 @@ export default function App() {
             />
           </motion.div>
           <div
-            className="absolute inset-0 bg-gradient-to-b from-[#2442D6]/85 via-[#2442D6]/45 to-[#0B1A6B]/80 pointer-events-none"
+            className="absolute inset-0 bg-gradient-to-b from-[#010C44]/90 via-[#010C44]/60 to-[#010C44]/90 pointer-events-none"
             aria-hidden="true"
           />
+          <VyabConcentricRings
+            className="absolute -right-24 -top-24 w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] opacity-90 pointer-events-none"
+            strokeColor="#072A6A"
+          />
+          <VyabCoralCircles className="absolute right-6 bottom-0 w-40 sm:w-56 pointer-events-none" />
 
           <div className="relative z-10 px-5 sm:px-10 md:px-14 pt-7 sm:pt-10 pb-10 sm:pb-14 min-h-[520px] sm:min-h-[600px] flex flex-col">
             {/* Corner labels */}
@@ -277,10 +284,12 @@ export default function App() {
               </span>
               <span
                 aria-hidden="true"
-                className="flex items-end justify-center gap-[4vw] sm:gap-[6vw] text-[34vw] sm:text-[26vw] lg:text-[300px] drop-shadow-[0_6px_30px_rgba(0,16,78,0.35)]"
+                className="flex items-end justify-center gap-[1vw] text-[34vw] sm:text-[26vw] lg:text-[300px] drop-shadow-[0_6px_30px_rgba(1,12,68,0.45)]"
               >
-                <span>VY</span>
-                <span>AB</span>
+                <span className="text-[#EF3E38]">V</span>
+                <span className="text-[#2573BE] mr-[4vw] lg:mr-14">Y</span>
+                <span className="text-[#FFCD0E]">A</span>
+                <span className="text-[#23CC83]">B</span>
               </span>
             </motion.h1>
 
@@ -307,7 +316,7 @@ export default function App() {
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
               <a
                 href="#booth"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#2442D6] font-display text-base sm:text-lg font-extrabold uppercase tracking-[0.05em] rounded-full hover:bg-[#FFD014] hover:text-[#00104E] transition-colors shadow-lg"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#010C44] font-display text-base sm:text-lg font-extrabold uppercase tracking-[0.05em] rounded-full hover:bg-[#FFD014] hover:text-[#00104E] transition-colors shadow-lg"
               >
                 {t('Tham gia Booth', 'Enter the Booth')}
                 <ArrowUpRight className="w-4 h-4" />
@@ -340,7 +349,7 @@ export default function App() {
                   transition={{ duration: 0.55, delay: idx * 0.08, ease: EASE_BRAND }}
                   className="text-center"
                 >
-                  <p className="font-display text-2xl font-black text-[#2442D6] text-left mb-2 tabular-nums">
+                  <p className="font-display text-3xl font-black text-[#EF3E38] text-left mb-2 tabular-nums">
                     0{idx + 1}.
                   </p>
                   <button
@@ -350,7 +359,7 @@ export default function App() {
                       `Xem ảnh phóng to: ${photo.altVi}`,
                       `View high-resolution photo: ${photo.altEn}`,
                     )}
-                    className="group relative block w-full overflow-hidden cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2442D6]"
+                    className="group relative block w-full overflow-hidden cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#010C44]"
                   >
                     <FramedPhoto
                       src={photo.src}
@@ -360,13 +369,13 @@ export default function App() {
                       imgClassName="group-hover:scale-[1.05]"
                     />
                     <span
-                      className="absolute right-3 bottom-3 w-9 h-9 rounded-full bg-white text-[#2442D6] flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity"
+                      className="absolute right-3 bottom-3 w-9 h-9 rounded-full bg-white text-[#010C44] flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity"
                       aria-hidden="true"
                     >
                       <Maximize2 className="w-4 h-4" />
                     </span>
                   </button>
-                  <h3 className="font-display text-xl font-extrabold text-[#2442D6] mt-4 mb-1.5">
+                  <h3 className="font-display text-xl font-extrabold text-[#010C44] mt-4 mb-1.5">
                     {t(JOURNEY_LABELS[idx].vi, JOURNEY_LABELS[idx].en)}
                   </h3>
                   <p className="text-sm text-[#42537A] leading-relaxed max-w-[30ch] mx-auto">
@@ -416,7 +425,7 @@ export default function App() {
               {/* Collage: tall photo on a royal block + overlapping landscape photo */}
               <div className="lg:col-span-6 relative min-h-[420px] sm:min-h-[480px]">
                 <div
-                  className="absolute right-0 top-0 w-[62%] h-[78%] bg-[#2442D6] rounded-r-xl translate-x-3 -translate-y-3"
+                  className="absolute right-0 top-0 w-[62%] h-[78%] bg-[#010C44] rounded-r-xl translate-x-3 -translate-y-3"
                   aria-hidden="true"
                 />
                 <motion.img
@@ -449,7 +458,7 @@ export default function App() {
             </div>
 
             {/* By the numbers */}
-            <div className="mt-16 md:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-px bg-[#2442D6]/15 border border-[#2442D6]/15">
+            <div className="mt-16 md:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-px bg-[#010C44]/15 border border-[#010C44]/15">
               {IMPACT_STATS.map((stat, idx) => (
                 <motion.div
                   key={stat.value + stat.labelEn}
@@ -459,7 +468,7 @@ export default function App() {
                   transition={{ duration: 0.45, delay: idx * 0.08, ease: EASE_BRAND }}
                   className="bg-white p-5 sm:p-7"
                 >
-                  <p className="font-display text-6xl md:text-7xl font-black text-[#2442D6] leading-none mb-3 tabular-nums">
+                  <p className="font-display text-6xl md:text-7xl font-black text-[#010C44] leading-none mb-3 tabular-nums">
                     {stat.value}
                   </p>
                   <h3 className="font-display text-lg font-extrabold text-[#00104E] mb-1.5">
@@ -498,7 +507,7 @@ export default function App() {
                   referrerPolicy="no-referrer"
                   className="absolute right-0 bottom-0 w-[52%] aspect-[4/3] object-cover border-[6px] border-white shadow-xl"
                 />
-                <p className="absolute left-4 sm:left-8 bottom-6 sm:bottom-10 w-[46%] bg-[#2442D6] text-white text-xs sm:text-[13px] leading-relaxed p-4 shadow-lg">
+                <p className="absolute left-4 sm:left-8 bottom-6 sm:bottom-10 w-[46%] bg-[#010C44] text-white text-xs sm:text-[13px] leading-relaxed p-4 shadow-lg">
                   {t(
                     'Một mạng lưới liên ngành gồm các bạn trẻ từ khắp mọi miền — kết nối bản sắc Việt Nam với đối thoại chính sách quốc tế.',
                     'A multidisciplinary network of young voices from every region — linking Vietnamese identity with international policy dialogue.',
@@ -524,9 +533,9 @@ export default function App() {
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="inline-flex items-center gap-3 pl-1.5 pr-4 py-1.5 rounded-full bg-[#F2F4F9] border border-[#2442D6]/20 text-[#00104E] text-sm font-semibold hover:border-[#2442D6] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-3 pl-1.5 pr-4 py-1.5 rounded-full bg-[#F2F4F9] border border-[#010C44]/20 text-[#00104E] text-sm font-semibold hover:border-[#010C44] transition-colors cursor-pointer"
                   >
-                    <span className="w-8 h-8 rounded-full bg-[#2442D6] text-white flex items-center justify-center shrink-0">
+                    <span className="w-8 h-8 rounded-full bg-[#010C44] text-white flex items-center justify-center shrink-0">
                       {copiedEmail ? <Check className="w-4 h-4" /> : <Mail className="w-4 h-4" />}
                     </span>
                     <span>vyab.ysb@gmail.com</span>
@@ -536,7 +545,7 @@ export default function App() {
                     href="https://www.linkedin.com/company/vyab/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#2442D6] text-white text-sm font-semibold hover:bg-[#1A30A8] transition-colors"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#010C44] text-white text-sm font-semibold hover:bg-[#072A6A] transition-colors"
                   >
                     LinkedIn
                     <ArrowUpRight className="w-4 h-4" />
@@ -561,10 +570,11 @@ export default function App() {
 
       {/* ==================== FOOTER BAND ==================== */}
       <footer className="px-3 sm:px-6 pb-8">
-        <div className="max-w-[1240px] mx-auto bg-[#0B1A6B] text-white px-6 sm:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="max-w-[1240px] mx-auto bg-[#010C44] text-white px-6 sm:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="font-display text-xl sm:text-2xl font-extrabold tracking-[0.03em]">
             @vyab · Vietnam Youth Advisory Board
           </p>
+          <FourColorMark className="hidden md:inline-flex" />
           <p className="font-display text-xl sm:text-2xl font-extrabold uppercase tracking-[0.03em] text-center sm:text-right">
             {t('Chủ đề', 'Topic')}: Engage · Empower · Connect
           </p>

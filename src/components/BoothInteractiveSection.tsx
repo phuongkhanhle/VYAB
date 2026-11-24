@@ -259,7 +259,7 @@ export function BoothInteractiveSection({ lang }: BoothInteractiveSectionProps) 
 
     // Kicker
     ctx.fillStyle = '#FFD014';
-    ctx.font = '700 19px "Be Vietnam Pro", sans-serif';
+    ctx.font = '700 19px "Source Sans 3", sans-serif';
     ctx.fillText('VIETNAM YOUTH ADVISORY BOARD · 1ST COHORT FINALE BOOTH PASS', 68, 126);
 
     // Accent bar
@@ -268,12 +268,12 @@ export function BoothInteractiveSection({ lang }: BoothInteractiveSectionProps) 
 
     // Visitor Name
     ctx.fillStyle = '#FFFFFF';
-    ctx.font = '800 58px "Big Shoulders Display", "Be Vietnam Pro", sans-serif';
+    ctx.font = '800 58px "Barlow Condensed", "Source Sans 3", sans-serif';
     ctx.fillText(displayName, 68, 244);
 
     // Persona Title
     ctx.fillStyle = '#FFD014';
-    ctx.font = '700 30px "Big Shoulders Display", "Be Vietnam Pro", sans-serif';
+    ctx.font = '700 30px "Barlow Condensed", "Source Sans 3", sans-serif';
     ctx.fillText(
       `${persona.code} — ${lang === 'vi' ? persona.titleVi : persona.titleEn}`,
       68,
@@ -282,7 +282,7 @@ export function BoothInteractiveSection({ lang }: BoothInteractiveSectionProps) 
 
     // Score & Description
     ctx.fillStyle = 'rgba(255,255,255,0.85)';
-    ctx.font = '400 22px "Be Vietnam Pro", sans-serif';
+    ctx.font = '400 22px "Source Sans 3", sans-serif';
     const scoreLine =
       lang === 'vi'
         ? `Hoàn thành Thử thách VYAB: ${correctCount}/${QUIZ_QUESTIONS.length} điểm`
@@ -299,7 +299,7 @@ export function BoothInteractiveSection({ lang }: BoothInteractiveSectionProps) 
 
     // Footer metadata
     ctx.fillStyle = 'rgba(255,255,255,0.7)';
-    ctx.font = '500 19px "Be Vietnam Pro", sans-serif';
+    ctx.font = '500 19px "Source Sans 3", sans-serif';
     ctx.fillText('Sky Garden, EU Delegation to Viet Nam · 27 November 2026', 68, 520);
     ctx.fillText('Engage · Empower · Connect  |  EU Youth Action Plan 2022–2027', 68, 554);
 

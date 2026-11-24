@@ -231,12 +231,12 @@ export function BoothQrGenerator({ lang }: BoothQrGeneratorProps) {
     // Top Kicker
     ctx.fillStyle = '#FFD014';
     ctx.textAlign = 'center';
-    ctx.font = '700 22px "Be Vietnam Pro", sans-serif';
+    ctx.font = '700 22px "Source Sans 3", sans-serif';
     ctx.fillText('VIETNAM YOUTH ADVISORY BOARD · 2024–2026', 540, 158);
 
     // Main Geometric Display Title
     ctx.fillStyle = '#FFFFFF';
-    ctx.font = '800 52px "Big Shoulders Display", "Be Vietnam Pro", sans-serif';
+    ctx.font = '800 52px "Barlow Condensed", "Source Sans 3", sans-serif';
     ctx.fillText(
       lang === 'vi' ? activePreset.titleVi : activePreset.titleEn,
       540,
@@ -265,7 +265,7 @@ export function BoothQrGenerator({ lang }: BoothQrGeneratorProps) {
 
     // Caption below QR
     ctx.fillStyle = '#FFD014';
-    ctx.font = '700 28px "Big Shoulders Display", "Be Vietnam Pro", sans-serif';
+    ctx.font = '700 28px "Barlow Condensed", "Source Sans 3", sans-serif';
     ctx.fillText(effectiveCaption.slice(0, 54), 540, 1068);
 
     // Shortened URL display
@@ -288,10 +288,10 @@ export function BoothQrGenerator({ lang }: BoothQrGeneratorProps) {
 
     // Footer Credits
     ctx.fillStyle = 'rgba(255,255,255,0.78)';
-    ctx.font = '500 22px "Be Vietnam Pro", sans-serif';
+    ctx.font = '500 22px "Source Sans 3", sans-serif';
     ctx.fillText('Engage · Empower · Connect', 540, 1272);
     ctx.fillStyle = 'rgba(255,255,255,0.58)';
-    ctx.font = '400 18px "Be Vietnam Pro", sans-serif';
+    ctx.font = '400 18px "Source Sans 3", sans-serif';
     ctx.fillText('Sky Garden, EU Delegation to Viet Nam · 27 November 2026', 540, 1316);
 
     const link = document.createElement('a');
