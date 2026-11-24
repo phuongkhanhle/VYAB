@@ -32,7 +32,7 @@ export function PillarsSection({ lang }: PillarsSectionProps) {
   return (
     <section
       id="pillars"
-      className="relative bg-[#F4F7FC] border-y border-[#00104E]/10 overflow-hidden"
+      className="vy-edge-left relative bg-white overflow-hidden"
     >
       <VyabCoralCircles className="hidden lg:block absolute right-8 bottom-0 w-48 opacity-85" />
 
@@ -49,7 +49,7 @@ export function PillarsSection({ lang }: PillarsSectionProps) {
               variant="light"
               className="mb-4"
             />
-            <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[#00104E] tracking-tight leading-[1.08]">
+            <h2 className="vy-title font-display text-4xl md:text-5xl font-extrabold text-[#00104E] tracking-tight leading-[1.08]">
               {lang === 'vi'
                 ? '3 trụ cột hành động & khuyến nghị'
                 : '3 pillars of the EU Youth Action Plan'}
@@ -247,7 +247,7 @@ export function PillarsSection({ lang }: PillarsSectionProps) {
           <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="rounded-2xl overflow-hidden border-[3px] border-[#1CD07A] shadow-md bg-white">
               <FramedPhoto
-                src="/assets/vyab/event_08_800x600.png"
+                src="assets/vyab/event_08_800x600.png"
                 alt="Empowering Youth for a Sustainable Mekong Delta"
                 framed={false}
                 className="aspect-[4/3] sm:aspect-auto sm:h-full"
@@ -255,7 +255,7 @@ export function PillarsSection({ lang }: PillarsSectionProps) {
             </div>
             <div className="rounded-2xl overflow-hidden border-[3px] border-[#FFD014] shadow-md bg-white">
               <FramedPhoto
-                src="/assets/vyab/event_07_820x546.png"
+                src="assets/vyab/event_07_820x546.png"
                 alt="EU Green Diplomacy Weeks 2024 in Vietnam"
                 framed={false}
                 className="aspect-[4/3] sm:aspect-auto sm:h-full"

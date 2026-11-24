@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Outfit", "Plus Jakarta Sans", -apple-system, sans-serif;
-  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-serif: "Playfair Display", Georgia, serif;
+  /* VYAB template type: Gotham Condensed → Barlow Condensed, Source Sans Pro → Source Sans 3 */
+  --font-display: "Barlow Condensed", "Source Sans 3", -apple-system, sans-serif;
+  --font-sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: "Barlow Condensed", "Source Sans 3", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   /* Official VYAB & EU Global Gateway Brand Tokens */
@@ -15,6 +16,13 @@
   --color-vyab-yellow: #ffd014;
   --color-vyab-emerald: #15b567;
   --color-vyab-mint: #1cd07a;
+
+  /* VYAB post-template tokens */
+  --color-vy-royal: #010c44; /* VYAB navy (titles, primary) */
+  --color-vy-royal-deep: #072a6a; /* VYAB ring blue */
+  --color-vy-crimson: #ef3e38; /* VYAB coral */
+  --color-vy-paper: #f2f4f9;
+  --color-vy-grid: #dde2ee;
 }
 
 @layer base {
@@ -22,7 +30,17 @@
     scroll-behavior: smooth;
     font-family: var(--font-sans);
     color: #00104e;
-    background-color: #ffffff;
+    background-color: var(--color-vy-paper);
+  }
+
+  /* Grid-paper canvas the "slides" sit on, like the reference board */
+  body {
+    background-color: var(--color-vy-paper);
+    background-image:
+      linear-gradient(var(--color-vy-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-vy-grid) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: -1px -1px;
   }
 
   h1, h2, h3, .font-display {
@@ -44,6 +62,79 @@
 
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Slide cards on the grid board ---------- */
+main > section {
+  position: relative;
+  max-width: 1240px;
+  margin: 28px 12px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(0, 16, 78, 0.04), 0 18px 40px -22px rgba(0, 16, 78, 0.28);
+}
+
+@media (min-width: 640px) {
+  main > section {
+    margin: 40px 24px;
+  }
+}
+
+@media (min-width: 1288px) {
+  main > section {
+    margin: 48px auto;
+  }
+}
+
+/* Royal-blue edge bars alternating left/right, echoing the slide accents */
+main > section.vy-edge-left::before,
+main > section.vy-edge-right::before {
+  content: "";
+  position: absolute;
+  top: 14%;
+  bottom: 14%;
+  width: 12px;
+  background: var(--color-vy-crimson);
+  z-index: 1;
+  pointer-events: none;
+}
+main > section.vy-edge-left::before {
+  left: 0;
+  border-radius: 0 6px 6px 0;
+}
+main > section.vy-edge-right::before {
+  right: 0;
+  border-radius: 6px 0 0 6px;
+}
+
+/* ---------- Typography: tall condensed uppercase headlines ---------- */
+.vy-title {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  color: var(--color-vy-royal);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 5.6vw, 4.25rem);
+  line-height: 1;
+  padding-top: 0.1em;
+  letter-spacing: 0.005em;
+}
+.vy-title.text-white {
+  color: #ffffff;
+}
+
+h3.font-display,
+h4.font-display {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.vy-label {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--color-vy-royal);
 }
 
 /* Official VYAB Swallowtail Ribbon Clip */

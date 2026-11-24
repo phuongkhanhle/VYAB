@@ -111,15 +111,15 @@ export function VyabKicker({
 }) {
   const bars = (
     <span className="inline-flex items-center gap-1 shrink-0" aria-hidden="true">
-      <span className="inline-block w-6 h-3 bg-[#FFD014] -skew-x-12" />
-      <span className="inline-block w-2.5 h-3 bg-[#FFD014] -skew-x-12" />
+      <span className="inline-block w-6 h-3 bg-[#FFCD0E] -skew-x-12" />
+      <span className="inline-block w-2.5 h-3 bg-[#FFCD0E] -skew-x-12" />
     </span>
   );
 
   if (variant === 'navy-bar') {
     return (
       <div
-        className={`inline-flex items-center gap-3 px-4 py-2 bg-[#00104E] text-white text-xs font-bold tracking-[0.12em] uppercase ${className}`}
+        className={`inline-flex items-center gap-3 px-4 py-2 bg-[#010C44] text-white text-[11px] sm:text-xs font-bold tracking-[0.14em] uppercase ${className}`}
       >
         {bars}
         <span>{label}</span>
@@ -140,7 +140,7 @@ export function VyabKicker({
 
   return (
     <div
-      className={`inline-flex items-center gap-3 text-[#00104E] text-xs font-bold tracking-[0.14em] uppercase ${className}`}
+      className={`inline-flex items-center gap-3 text-[#010C44] text-[11px] sm:text-xs font-bold tracking-[0.16em] uppercase ${className}`}
     >
       {bars}
       <span>{label}</span>

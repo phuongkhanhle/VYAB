@@ -100,8 +100,10 @@ const QR_COLORS = [
 
 export function BoothQrGenerator({ lang }: BoothQrGeneratorProps) {
   const origin = useMemo(() => {
+    // Site root including any sub-path (e.g. https://user.github.io/VYAB), without trailing slash
     if (typeof window !== 'undefined' && window.location?.origin) {
-      return window.location.origin;
+      const dir = window.location.pathname.replace(/[^/]*$/, '').replace(/\/$/, '');
+      return `${window.location.origin}${dir}`;
     }
     return 'https://vyab.vietnam.eu';
   }, []);
@@ -231,12 +233,12 @@ export function BoothQrGenerator({ lang }: BoothQrGeneratorProps) {
     // Top Kicker
     ctx.fillStyle = '#FFD014';
     ctx.textAlign = 'center';
-    ctx.font = '700 22px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '700 22px "Source Sans 3", sans-serif';
     ctx.fillText('VIETNAM YOUTH ADVISORY BOARD · 2024–2026', 540, 158);
 
     // Main Geometric Display Title
     ctx.fillStyle = '#FFFFFF';
-    ctx.font = '800 52px "Outfit", "Plus Jakarta Sans", sans-serif';
+    ctx.font = '800 52px "Barlow Condensed", "Source Sans 3", sans-serif';
     ctx.fillText(
       lang === 'vi' ? activePreset.titleVi : activePreset.titleEn,
       540,
@@ -265,7 +267,7 @@ export function BoothQrGenerator({ lang }: BoothQrGeneratorProps) {
 
     // Caption below QR
     ctx.fillStyle = '#FFD014';
-    ctx.font = '700 28px "Outfit", "Plus Jakarta Sans", sans-serif';
+    ctx.font = '700 28px "Barlow Condensed", "Source Sans 3", sans-serif';
     ctx.fillText(effectiveCaption.slice(0, 54), 540, 1068);
 
     // Shortened URL display
@@ -288,10 +290,10 @@ export function BoothQrGenerator({ lang }: BoothQrGeneratorProps) {
 
     // Footer Credits
     ctx.fillStyle = 'rgba(255,255,255,0.78)';
-    ctx.font = '500 22px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '500 22px "Source Sans 3", sans-serif';
     ctx.fillText('Engage · Empower · Connect', 540, 1272);
     ctx.fillStyle = 'rgba(255,255,255,0.58)';
-    ctx.font = '400 18px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '400 18px "Source Sans 3", sans-serif';
     ctx.fillText('Sky Garden, EU Delegation to Viet Nam · 27 November 2026', 540, 1316);
 
     const link = document.createElement('a');

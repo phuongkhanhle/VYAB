@@ -23,6 +23,7 @@ import {
   type PolicySurveyResponse,
 } from '../data/policyMapData';
 import { FourColorMark, VyabKicker } from './VyabBrandMark';
+import { DomainBadge, DomainVignette, FolkCrane, SwirlCloud } from './PolicyIllustrations';
 
 interface YouthPolicyMapSectionProps {
   lang: Lang;
@@ -156,7 +157,7 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
     POLICY_DOMAINS.forEach((domain) => {
       const list = grouped[domain.id];
       const stat = domainStats.find((s) => s.domain.id === domain.id);
-      const hubRadius = 30 + Math.min(24, (stat?.primaryCount || 0) * 3.2);
+      const hubRadius = 54 + Math.min(14, (stat?.primaryCount || 0) * 1.6);
 
       list.forEach((resp, idx) => {
         const ring = Math.floor(idx / 8);
@@ -165,7 +166,7 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
         const baseAngle = (Math.atan2(domain.cy - 290, domain.cx - 500) + Math.PI * 0.15);
         const angle =
           baseAngle + (posInRing / Math.max(1, countInRing)) * Math.PI * 2 + ring * 0.4;
-        const orbitRadius = hubRadius + 28 + ring * 22;
+        const orbitRadius = hubRadius + 20 + ring * 16;
 
         const x = Math.max(36, Math.min(964, domain.cx + Math.cos(angle) * orbitRadius));
         const y = Math.max(36, Math.min(544, domain.cy + Math.sin(angle) * orbitRadius));
@@ -281,7 +282,7 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
 
     // Header Title
     ctx.fillStyle = '#FFD014';
-    ctx.font = '700 22px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '700 22px "Source Sans 3", sans-serif';
     ctx.fillText(
       'VIETNAM YOUTH ADVISORY BOARD (VYAB) · EXHIBITION COLLECTIVE POLICY MAP',
       216,
@@ -289,7 +290,7 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
     );
 
     ctx.fillStyle = '#FFFFFF';
-    ctx.font = '800 60px "Outfit", "Plus Jakarta Sans", sans-serif';
+    ctx.font = '800 60px "Barlow Condensed", "Source Sans 3", sans-serif';
     ctx.fillText(
       lang === 'vi'
         ? 'Bản Đồ Chính Sách Thanh Niên Thời Đại Mới'
@@ -299,7 +300,7 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
     );
 
     ctx.fillStyle = '#FFD014';
-    ctx.font = '600 24px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '600 24px "Source Sans 3", sans-serif';
     ctx.fillText(
       lang === 'vi'
         ? `Tổng hợp ${responses.length} tiếng nói thanh niên tại Triển lãm VYAB · Khóa 1 (2024–2026)`
@@ -389,9 +390,9 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
 
       ctx.fillStyle = '#FFFFFF';
       ctx.textAlign = 'center';
-      ctx.font = '700 30px "Plus Jakarta Sans", sans-serif';
+      ctx.font = '700 30px "Source Sans 3", sans-serif';
       ctx.fillText(`${pct}%`, hx, hy + 5);
-      ctx.font = '600 18px "Plus Jakarta Sans", sans-serif';
+      ctx.font = '600 18px "Source Sans 3", sans-serif';
       ctx.fillText(lang === 'vi' ? d.shortVi : d.shortEn, hx, hy + radius + 28);
     });
 
@@ -405,10 +406,10 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
     ctx.stroke();
     ctx.fillStyle = '#FFFFFF';
     ctx.textAlign = 'center';
-    ctx.font = '800 34px "Outfit", "Plus Jakarta Sans", sans-serif';
+    ctx.font = '800 34px "Barlow Condensed", "Source Sans 3", sans-serif';
     ctx.fillText('VYAB', coreX, coreY + 4);
     ctx.fillStyle = '#FFD014';
-    ctx.font = '600 15px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '600 15px "Source Sans 3", sans-serif';
     ctx.fillText('2024–2026', coreX, coreY + 28);
 
     // Right Column Summary Sidebar (x = 1660..2310)
@@ -422,7 +423,7 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
     ctx.stroke();
 
     ctx.fillStyle = '#FFD014';
-    ctx.font = '700 20px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '700 20px "Source Sans 3", sans-serif';
     ctx.fillText(
       lang === 'vi' ? 'MỨC ĐỘ QUAN TÂM CHÍNH SÁCH' : 'TOP POLICY PRIORITIES',
       sideX,
@@ -432,7 +433,7 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
     domainStats.forEach((item, idx) => {
       const y = 360 + idx * 92;
       ctx.fillStyle = '#FFFFFF';
-      ctx.font = '600 22px "Plus Jakarta Sans", sans-serif';
+      ctx.font = '600 22px "Source Sans 3", sans-serif';
       ctx.fillText(
         `${idx + 1}. ${lang === 'vi' ? item.domain.shortVi : item.domain.shortEn}`,
         sideX,
@@ -453,7 +454,7 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
 
     // Emerging Keywords List
     ctx.fillStyle = '#FFD014';
-    ctx.font = '700 20px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '700 20px "Source Sans 3", sans-serif';
     ctx.fillText(
       lang === 'vi' ? 'TỪ KHÓA NỔI BẬT TỪ NGƯỜI TRẺ' : 'EMERGING YOUTH KEYWORDS',
       sideX,
@@ -462,7 +463,7 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
 
     const keywords = Array.from(new Set(responses.map((r) => r.keyword))).slice(0, 10);
     ctx.fillStyle = 'rgba(255,255,255,0.9)';
-    ctx.font = '600 21px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '600 21px "Source Sans 3", sans-serif';
     keywords.forEach((kw, idx) => {
       const col = idx % 2;
       const row = Math.floor(idx / 2);
@@ -471,7 +472,7 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
 
     // Footer line
     ctx.fillStyle = 'rgba(255,255,255,0.6)';
-    ctx.font = '500 18px "Plus Jakarta Sans", sans-serif';
+    ctx.font = '500 18px "Source Sans 3", sans-serif';
     ctx.fillText(
       'Engage · Empower · Connect  |  Sky Garden, EU Delegation to Viet Nam · 27 November 2026',
       88,
@@ -539,67 +540,142 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
     setTimeout(() => setExportMessage(null), 3500);
   };
 
-  const renderConstellationSvg = (large = false) => (
-    <div className="relative w-full bg-[#00104E] rounded-2xl border border-[#123985]/70 shadow-xl overflow-hidden">
+  const hubRadiusFor = (count: number) => 50 + Math.min(14, count * 1.6);
+
+  // Gentle bow for "silk ribbon" connectors between two points
+  const ribbonPath = (x1: number, y1: number, x2: number, y2: number, bend = 0.18) => {
+    const mx = (x1 + x2) / 2;
+    const my = (y1 + y2) / 2;
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    return `M${x1} ${y1} Q${mx - dy * bend} ${my + dx * bend} ${x2} ${y2}`;
+  };
+
+  const renderConstellationSvg = (large = false) => {
+    const uid = large ? 'vymap-lg' : 'vymap';
+    return (
+    <div className="relative w-full bg-[#FFF7E4] rounded-2xl border-4 border-[#010C44] shadow-xl overflow-hidden">
       <svg
         viewBox="0 0 1000 580"
         className={`w-full h-auto block select-none ${large ? 'max-h-[72vh]' : ''}`}
         role="img"
         aria-label={
           lang === 'vi'
-            ? 'Bản đồ chòm sao chính sách thanh niên thời đại mới VYAB'
-            : 'VYAB New-Era Youth Policy Constellation Map'
+            ? 'Bản đồ minh họa chính sách thanh niên thời đại mới VYAB'
+            : 'VYAB illustrated New-Era Youth Policy Map'
         }
       >
-        {/* Subtle Concentric Orbit Guides */}
-        <g stroke="rgba(255,255,255,0.09)" fill="none">
-          <circle cx="500" cy="290" r="118" strokeDasharray="3 5" />
-          <circle cx="500" cy="290" r="218" />
-          <circle cx="500" cy="290" r="320" strokeDasharray="2 6" />
+        <defs>
+          <pattern id={`${uid}-waves`} width="120" height="22" patternUnits="userSpaceOnUse">
+            <path
+              d="M0 11 Q15 4 30 11 T60 11 T90 11 T120 11"
+              fill="none"
+              stroke="#F1D9A0"
+              strokeWidth="1.1"
+            />
+          </pattern>
+          <radialGradient id={`${uid}-glow`}>
+            <stop offset="0" stopColor="#FFE38A" stopOpacity="0.9" />
+            <stop offset="1" stopColor="#FFE38A" stopOpacity="0" />
+          </radialGradient>
+          <clipPath id={`${uid}-medal`}>
+            <circle r="58" />
+          </clipPath>
+        </defs>
+
+        {/* Illustrated backdrop: cream paper, flowing lines, golden clouds, hills */}
+        <rect width="1000" height="580" fill="#FFF7E4" />
+        <rect width="1000" height="580" fill={`url(#${uid}-waves)`} />
+        <path
+          d="M0 0 H300 C270 34 214 22 190 50 C166 78 118 62 96 88 C72 114 30 104 0 132 Z"
+          fill="#FFE3A3"
+        />
+        <path
+          d="M0 0 H170 C150 22 116 16 100 34 C84 52 44 46 0 74 Z"
+          fill="#FCCB6B"
+          opacity="0.75"
+        />
+        <path
+          d="M1000 0 H700 C730 34 786 22 810 50 C834 78 882 62 904 88 C928 114 970 104 1000 132 Z"
+          fill="#FFE3A3"
+        />
+        <path
+          d="M1000 0 H830 C850 22 884 16 900 34 C916 52 956 46 1000 74 Z"
+          fill="#FCCB6B"
+          opacity="0.75"
+        />
+        <g fill="none" stroke="#E8A90C" strokeWidth="1.6" strokeLinecap="round" opacity="0.8">
+          <path d="M120 40 a8 8 0 1 1 8 8 a14 14 0 1 1 -15 -16" />
+          <path d="M880 40 a8 8 0 1 0 -8 8 a14 14 0 1 0 15 -16" />
+        </g>
+        <g transform="translate(360 70)">
+          <SwirlCloud x={0} y={0} s={2.1} fill="#FFFFFF" />
+        </g>
+        <g transform="translate(650 300)">
+          <SwirlCloud x={0} y={0} s={1.6} fill="#FFFFFF" />
+        </g>
+        <g transform="translate(330 330)">
+          <SwirlCloud x={0} y={0} s={1.5} fill="#FFFFFF" />
+        </g>
+        <FolkCrane x={620} y={52} s={1.9} />
+        <FolkCrane x={380} y={250} s={1.2} wingA="#FFCD0E" wingB="#2573BE" flip />
+        <path
+          d="M0 520 C120 480 220 500 320 515 C420 530 520 490 640 500 C760 510 860 480 1000 500 V580 H0 Z"
+          fill="#9ED9C9"
+          opacity="0.75"
+        />
+        <path
+          d="M0 548 C150 522 300 562 450 546 C600 530 760 566 1000 540 V580 H0 Z"
+          fill="#6CC79A"
+          opacity="0.75"
+        />
+        <circle cx="968" cy="580" r="62" fill="#EF3E38" />
+        <circle cx="886" cy="580" r="20" fill="#EF3E38" />
+        <g transform="translate(36 556)">
+          <rect width="12" height="12" rx="3" fill="#EF3E38" />
+          <rect x="16" width="12" height="12" rx="3" fill="#2573BE" />
+          <rect x="32" width="12" height="12" rx="3" fill="#FFCD0E" />
+          <rect x="48" width="12" height="12" rx="3" fill="#23CC83" />
         </g>
 
-        {/* Cross-Domain Intersections (when youth link 2 policies together) */}
-        <g>
+        {/* Cross-domain ribbons (when youth link 2 policies together) */}
+        <g fill="none" strokeLinecap="round">
           {crossDomainLinks.map((link, idx) => {
             const dimmed =
               focusedDomainId !== 'all' &&
               link.from.id !== focusedDomainId &&
               link.to.id !== focusedDomainId;
             return (
-              <line
+              <path
                 key={`${link.from.id}-${link.to.id}-${idx}`}
-                x1={link.from.cx}
-                y1={link.from.cy}
-                x2={link.to.cx}
-                y2={link.to.cy}
-                stroke="#FFD014"
-                strokeOpacity={dimmed ? 0.05 : Math.min(0.48, 0.16 + link.count * 0.08)}
-                strokeWidth={Math.min(3.5, 1 + link.count * 0.6)}
+                d={ribbonPath(link.from.cx, link.from.cy, link.to.cx, link.to.cy, 0.12)}
+                stroke="#EF3E38"
+                strokeOpacity={dimmed ? 0.06 : Math.min(0.55, 0.2 + link.count * 0.08)}
+                strokeWidth={Math.min(4, 1.2 + link.count * 0.6)}
+                strokeDasharray="1 7"
               />
             );
           })}
         </g>
 
-        {/* Spokes connecting VYAB Core to each of the 6 Policy Hubs */}
-        <g>
+        {/* Golden spokes from the VYAB sun to each policy medallion */}
+        <g fill="none" strokeLinecap="round">
           {POLICY_DOMAINS.map((domain) => {
             const dimmed = focusedDomainId !== 'all' && focusedDomainId !== domain.id;
             return (
-              <line
+              <path
                 key={`spoke-${domain.id}`}
-                x1={500}
-                y1={290}
-                x2={domain.cx}
-                y2={domain.cy}
-                stroke="rgba(255,255,255,0.22)"
-                strokeOpacity={dimmed ? 0.08 : 0.25}
-                strokeWidth={1.2}
+                d={ribbonPath(500, 290, domain.cx, domain.cy, 0.1)}
+                stroke="#E8A90C"
+                strokeOpacity={dimmed ? 0.2 : 0.85}
+                strokeWidth={2.4}
+                strokeDasharray="2 7"
               />
             );
           })}
         </g>
 
-        {/* Individual Youth Response Nodes orbiting their Policy Hub */}
+        {/* Individual youth voices: berries orbiting their medallion */}
         <g>
           {positionedNodes.map((node) => {
             const isDimmed =
@@ -617,8 +693,8 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
                   x2={node.x}
                   y2={node.y}
                   stroke={node.domain.color}
-                  strokeOpacity={isDimmed ? 0.08 : isSelected ? 0.85 : 0.38}
-                  strokeWidth={isSelected ? 1.8 : 1}
+                  strokeOpacity={isDimmed ? 0.08 : isSelected ? 0.85 : 0.4}
+                  strokeWidth={isSelected ? 2 : 1.2}
                 />
 
                 {isNewest && (
@@ -627,7 +703,7 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
                     cy={node.y}
                     r={18}
                     fill="none"
-                    stroke="#FFD014"
+                    stroke="#EF3E38"
                     strokeWidth={2}
                     initial={{ scale: 0.5, opacity: 0.9 }}
                     animate={{ scale: 1.5, opacity: 0 }}
@@ -638,117 +714,157 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
                 <circle
                   cx={node.x}
                   cy={node.y}
-                  r={isSelected ? 9.5 : 6.5}
-                  fill={isSelected ? '#FFD014' : node.domain.color}
-                  fillOpacity={isDimmed ? 0.2 : 0.95}
+                  r={isSelected ? 10 : 7}
+                  fill={isSelected ? '#FFCD0E' : node.domain.color}
+                  fillOpacity={isDimmed ? 0.2 : 1}
                   stroke="#FFFFFF"
-                  strokeWidth={isSelected ? 2.4 : 1.3}
+                  strokeWidth={isSelected ? 2.6 : 2}
                   className="cursor-pointer transition-all duration-200"
                   onClick={() => setSelectedNodeId(node.response.id)}
                 >
                   <title>{`${node.response.keyword} — ${node.response.name} (${node.response.city})`}</title>
                 </circle>
+                {!isDimmed && (
+                  <circle
+                    cx={node.x - 2}
+                    cy={node.y - 2.2}
+                    r={1.6}
+                    fill="#FFFFFF"
+                    opacity={0.75}
+                    pointerEvents="none"
+                  />
+                )}
               </g>
             );
           })}
         </g>
 
-        {/* 6 Scaled Policy Domain Hubs */}
+        {/* 6 illustrated policy medallions */}
         <g>
           {POLICY_DOMAINS.map((domain) => {
             const stat = domainStats.find((s) => s.domain.id === domain.id);
             const count = stat?.primaryCount || 0;
             const pct = stat?.sharePct || 0;
-            const radius = 29 + Math.min(22, count * 3.1);
+            const radius = hubRadiusFor(count);
             const isActive = focusedDomainId === domain.id;
             const isDimmed = focusedDomainId !== 'all' && !isActive;
+            const label = lang === 'vi' ? domain.shortVi : domain.shortEn;
+            const labelW = label.length * 7.4 + 28;
+            const badge = { x: radius * 0.76, y: radius * 0.68 };
 
             return (
               <g
                 key={domain.id}
+                transform={`translate(${domain.cx} ${domain.cy})`}
                 className="cursor-pointer"
                 onClick={() =>
                   setFocusedDomainId((curr) => (curr === domain.id ? 'all' : domain.id))
                 }
-                opacity={isDimmed ? 0.35 : 1}
+                opacity={isDimmed ? 0.4 : 1}
+                role="button"
+                aria-label={`${label}: ${pct}%`}
               >
+                <circle r={radius + 14} fill={`url(#${uid}-glow)`} />
                 <circle
-                  cx={domain.cx}
-                  cy={domain.cy}
-                  r={radius + 6}
-                  fill={domain.color}
-                  fillOpacity={isActive ? 0.26 : 0.14}
+                  r={radius + 7}
+                  fill="none"
+                  stroke="#E8A90C"
+                  strokeWidth={2.4}
+                  strokeDasharray="0.5 6"
+                  strokeLinecap="round"
                 />
+                <circle r={radius + 2.5} fill="#FFFFFF" />
+                <g transform={`scale(${radius / 58})`}>
+                  <g clipPath={`url(#${uid}-medal)`}>
+                    <DomainVignette id={domain.id} prefix={uid} />
+                  </g>
+                </g>
                 <circle
-                  cx={domain.cx}
-                  cy={domain.cy}
                   r={radius}
-                  fill={domain.color}
-                  stroke={isActive ? '#FFD014' : '#FFFFFF'}
-                  strokeWidth={isActive ? 3 : 1.8}
+                  fill="none"
+                  stroke={isActive ? '#FFCD0E' : domain.color}
+                  strokeWidth={isActive ? 6 : 4.5}
                 />
-                <text
-                  x={domain.cx}
-                  y={domain.cy + 4}
-                  textAnchor="middle"
-                  fill="#FFFFFF"
-                  fontSize="16"
-                  fontWeight="700"
-                  fontFamily="JetBrains Mono, monospace"
-                >
-                  {pct}%
-                </text>
-                <text
-                  x={domain.cx}
-                  y={domain.cy + radius + 19}
-                  textAnchor="middle"
-                  fill="#FFFFFF"
-                  fontSize="12.5"
-                  fontWeight="600"
-                  fontFamily="Plus Jakarta Sans, sans-serif"
-                >
-                  {lang === 'vi' ? domain.shortVi : domain.shortEn}
-                </text>
+
+                <g transform={`translate(${badge.x} ${badge.y})`}>
+                  <circle r={18} fill="#010C44" stroke="#FFCD0E" strokeWidth={2.2} />
+                  <text
+                    y={4.5}
+                    textAnchor="middle"
+                    fill="#FFFFFF"
+                    fontSize="13.5"
+                    fontWeight="800"
+                    fontFamily="Barlow Condensed, sans-serif"
+                  >
+                    {pct}%
+                  </text>
+                </g>
+
+                <g transform={`translate(0 ${radius + 10})`}>
+                  <rect
+                    x={-labelW / 2}
+                    width={labelW}
+                    height={24}
+                    rx={12}
+                    fill={isActive ? domain.color : '#010C44'}
+                  />
+                  <text
+                    y={16.5}
+                    textAnchor="middle"
+                    fill="#FFFFFF"
+                    fontSize="13"
+                    fontWeight="700"
+                    fontFamily="Source Sans 3, sans-serif"
+                  >
+                    {label}
+                  </text>
+                </g>
               </g>
             );
           })}
         </g>
 
-        {/* Central VYAB Core Hub */}
+        {/* Central VYAB sun */}
         <g
           className="cursor-pointer"
+          transform="translate(500 290)"
           onClick={() => {
             setFocusedDomainId('all');
             setSelectedNodeId(null);
           }}
         >
-          <circle
-            cx={500}
-            cy={290}
-            r={46}
-            fill="#000B38"
-            stroke="#FFD014"
-            strokeWidth={3}
-          />
+          <circle r={84} fill={`url(#${uid}-glow)`} />
+          {Array.from({ length: 16 }).map((_, i) => (
+            <path
+              key={i}
+              d="M-6 -52 L0 -68 L6 -52 Z"
+              fill={i % 2 ? '#E8A90C' : '#FFCD0E'}
+              transform={`rotate(${i * 22.5})`}
+            />
+          ))}
+          <circle r={50} fill="#010C44" stroke="#FFCD0E" strokeWidth={3} />
+          <circle r={43} fill="none" stroke="#072A6A" strokeWidth={5} />
           <text
-            x={500}
-            y={287}
+            y={6}
             textAnchor="middle"
-            fill="#FFFFFF"
-            fontSize="20"
-            fontWeight="800"
-            fontFamily="Outfit, Plus Jakarta Sans, sans-serif"
+            fontSize="30"
+            fontWeight="900"
+            fontFamily="Barlow Condensed, sans-serif"
+            letterSpacing="1"
           >
-            VYAB
+            <tspan fill="#EF3E38">V</tspan>
+            <tspan fill="#2573BE">Y</tspan>
+            <tspan fill="#FFCD0E">A</tspan>
+            <tspan fill="#23CC83">B</tspan>
           </text>
           <text
-            x={500}
-            y={305}
+            y={24}
             textAnchor="middle"
-            fill="#FFD014"
-            fontSize="10.5"
+            fill="#FFCD0E"
+            fontSize="11"
             fontWeight="700"
-            fontFamily="JetBrains Mono, monospace"
+            fontFamily="Source Sans 3, sans-serif"
+            letterSpacing="1.2"
           >
             {responses.length} {lang === 'vi' ? 'Ý KIẾN' : 'VOICES'}
           </text>
@@ -798,10 +914,11 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
         )}
       </AnimatePresence>
     </div>
-  );
+    );
+  };
 
   return (
-    <section id="policy-map" className="bg-[#F4F7FC] border-b border-[#00104E]/10">
+    <section id="policy-map" className="vy-edge-right bg-white">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-20 md:py-28">
         {/* Section Official VYAB Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-10">
@@ -815,7 +932,7 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
               variant="navy-bar"
               className="mb-4"
             />
-            <h2 className="font-display text-4xl md:text-5xl font-extrabold text-[#00104E] tracking-tight leading-[1.08]">
+            <h2 className="vy-title font-display text-4xl md:text-5xl font-extrabold text-[#00104E] tracking-tight leading-[1.08]">
               {lang === 'vi'
                 ? 'Người trẻ nghĩ gì về chính sách thời đại mới?'
                 : 'Mapping what young people truly care about'}
@@ -942,18 +1059,19 @@ export function YouthPolicyMapSection({ lang }: YouthPolicyMapSectionProps) {
                             setPrimaryDomain(domain.id);
                             if (secondaryDomain === domain.id) setSecondaryDomain('');
                           }}
-                          className={`text-left px-3 py-2.5 rounded-xl border text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 ${
+                          aria-pressed={active}
+                          className={`text-left pl-1.5 pr-3 py-1.5 rounded-xl border text-xs font-semibold transition-all cursor-pointer flex items-center gap-2.5 ${
                             active
-                              ? 'border-[#00104E] bg-[#00104E] text-white'
-                              : 'border-[#00104E]/14 bg-[#F4F7FC] text-[#2A3754] hover:border-[#00104E]/50'
+                              ? 'border-[#010C44] bg-[#010C44] text-white'
+                              : 'border-[#010C44]/14 bg-[#FFF7E4] text-[#2A3754] hover:border-[#010C44]/50'
                           }`}
                         >
-                          <span
-                            className="w-2.5 h-2.5 rounded-[3px] shrink-0"
-                            style={{ backgroundColor: domain.color }}
-                            aria-hidden="true"
+                          <DomainBadge
+                            id={domain.id}
+                            color={active ? '#FFCD0E' : domain.color}
+                            className="w-10 h-10 shrink-0"
                           />
-                          <span className="truncate">
+                          <span className="leading-tight">
                             {lang === 'vi' ? domain.shortVi : domain.shortEn}
                           </span>
                         </button>
